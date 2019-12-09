@@ -1,0 +1,39 @@
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+
+void deleteRepeats(char* Str)
+{
+    int startLen = strlen(Str);
+    int endLen = startLen;
+    for (int i = 0; i < endLen; i++)
+    {
+        if (Str[i] == '\0' && startLen == endLen)
+        {
+            return;
+        }
+        else
+        if (Str[i] == Str[i+1])
+        {
+            for (int j = i+1; j < endLen; j++)
+            {
+                Str[j] = Str[j+1];
+            }
+            endLen--;
+            i--;
+        }
+    }
+    Str[endLen]='\0';
+}
+
+int main(int argc, char** argv)
+{
+    const int MAX_STRING_LENGTH = 10000;
+    char string[MAX_STRING_LENGTH];
+    while (fgets(string, MAX_STRING_LENGTH, stdin) != NULL)
+    {
+        deleteRepeats(string);
+        printf("%s", string);
+    }
+    return 0;
+}
